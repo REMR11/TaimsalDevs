@@ -31,8 +31,14 @@ public partial class SystemTaimsalDevsContext : DbContext
     public virtual DbSet<UserDev> UserDevs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("workstation id=DbSysTaimsalDev.mssql.somee.com;packet size=4096;user id=UserSysTaimsal_SQLLogin_1;pwd=6eebslpat7;data source=DbSysTaimsalDev.mssql.somee.com;TrustServerCertificate=True;persist security info=False;initial catalog=DbSysTaimsalDev");
+    {
+        optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-NJIEQE0\SQLEXPRESS;Initial Catalog=DbSysTaimsalDevs;TrustServerCertificate=True;persist security info=False;Integrated Security=True");
+        //optionsBuilder.UseSqlServer(@"workstation id=DbSysTaimsalDev.mssql.somee.com;packet size=4096;user id=UserSysTaimsal_SQLLogin_1;pwd=6eebslpat7;data source=DbSysTaimsalDev.mssql.somee.com;persist security info=False;initial catalog=DbSysTaimsalDev");
+    }
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+    //        => optionsBuilder.UseSqlServer("workstation id=DbSysTaimsalDev.mssql.somee.com;packet size=4096;user id=UserSysTaimsal_SQLLogin_1;pwd=6eebslpat7;data source=DbSysTaimsalDev.mssql.somee.com;TrustServerCertificate=True;persist security info=False;initial catalog=DbSysTaimsalDevs");
+    //    /*optionsBuilder.UseSqlServer("workstation id=DbSysTaimsalDev.mssql.somee.com;packet size=4096;user id=UserSysTaimsal_SQLLogin_1;pwd=6eebslpat7;data source=DbSysTaimsalDev.mssql.somee.com;TrustServerCertificate=True;persist security info=False;initial catalog=DbSysTaimsalDev");*/
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

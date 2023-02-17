@@ -91,7 +91,7 @@ namespace SystemTaimsalDevs.DAL.Migrations
                     NameUser = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     LastNameUser = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Login = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Password = table.Column<string>(type: "nchar(32)", fixedLength: true, maxLength: 32, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(32)", fixedLength: true, maxLength: 32, nullable: false),
                     StatusUser = table.Column<byte>(name: "Status_User", type: "tinyint", nullable: false),
                     RegistrationUser = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

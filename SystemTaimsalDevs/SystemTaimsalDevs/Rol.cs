@@ -9,6 +9,7 @@ namespace SystemTaimsalDevs.EL;
 [Table("Rol")]
 public partial class Rol
 {
+    
     [Key]
     public int IdRol { get; set; }
 
@@ -17,4 +18,7 @@ public partial class Rol
 
     [InverseProperty("IdRolNavigation")]
     public virtual ICollection<UserDev> UserDevs { get; } = new List<UserDev>();
+    [NotMapped]
+    public int Top_Aux { get; set; }
+
 }
