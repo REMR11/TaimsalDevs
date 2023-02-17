@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace SystemTaimsalDevs.EL.Models;
+namespace SystemTaimsalDevs.EL;
 
 public partial class Provider
 {

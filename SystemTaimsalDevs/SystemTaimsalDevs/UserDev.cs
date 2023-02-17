@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace SystemTaimsalDevs.EL.Models;
+namespace SystemTaimsalDevs.EL;
 
 [Index("IdRol", Name = "IX_UserDevs_IdRol")]
 public partial class UserDev
@@ -30,9 +30,6 @@ public partial class UserDev
     public byte StatusUser { get; set; }
 
     public DateTime RegistrationUser { get; set; }
-
-    public int Id { get; set; }
-
     [ForeignKey("IdRol")]
     [InverseProperty("UserDevs")]
     public virtual Rol IdRolNavigation { get; set; } = null!;
