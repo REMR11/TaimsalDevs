@@ -19,4 +19,7 @@ public partial class Machine
 
     [InverseProperty("IdMachineNavigation")]
     public virtual ICollection<Report> Reports { get; } = new List<Report>();
+
+    [NotMapped]
+    public int Top_Aux { get; set; }
 }

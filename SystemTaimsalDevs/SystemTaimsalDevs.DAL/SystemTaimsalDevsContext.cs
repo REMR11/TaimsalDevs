@@ -32,8 +32,9 @@ public partial class SystemTaimsalDevsContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-NJIEQE0\SQLEXPRESS;Initial Catalog=DbSysTaimsalDevs;TrustServerCertificate=True;persist security info=False;Integrated Security=True");
+        //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-NJIEQE0\SQLEXPRESS;Initial Catalog=DbSysTaimsalDevs;TrustServerCertificate=True;persist security info=False;Integrated Security=True");
         //optionsBuilder.UseSqlServer(@"workstation id=DbSysTaimsalDev.mssql.somee.com;packet size=4096;user id=UserSysTaimsal_SQLLogin_1;pwd=6eebslpat7;data source=DbSysTaimsalDev.mssql.somee.com;persist security info=False;initial catalog=DbSysTaimsalDev");
+        optionsBuilder.UseSqlServer(@"workstation id=DbSysTaimsalDev02.mssql.somee.com;packet size=4096;user id=Razor_SQLLogin_1;pwd=gxaxeekhtu;data source=DbSysTaimsalDev02.mssql.somee.com;TrustServerCertificate=True;persist security info=False;initial catalog=DbSysTaimsalDev02");
     }
     //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.

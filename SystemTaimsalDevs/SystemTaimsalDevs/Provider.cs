@@ -16,4 +16,6 @@ public partial class Provider
 
     [InverseProperty("IdProviderNavigation")]
     public virtual ICollection<Report> Reports { get; } = new List<Report>();
+    [NotMapped]
+    public int Top_Aux { get; set; }
 }

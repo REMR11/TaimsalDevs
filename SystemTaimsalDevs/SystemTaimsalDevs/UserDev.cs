@@ -19,7 +19,7 @@ public partial class UserDev
 
     [StringLength(30)]
     public string LastNameUser { get; set; } = null!;
-
+    [Key]
     [StringLength(25)]
     public string Login { get; set; } = null!;
 

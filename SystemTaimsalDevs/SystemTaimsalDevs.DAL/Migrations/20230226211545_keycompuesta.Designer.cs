@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SystemTaimsalDevs.DAL;
 
@@ -11,9 +12,11 @@ using SystemTaimsalDevs.DAL;
 namespace SystemTaimsalDevs.DAL.Migrations
 {
     [DbContext(typeof(SystemTaimsalDevsContext))]
-    partial class SystemTaimsalDevsContextModelSnapshot : ModelSnapshot
+    [Migration("20230226211545_keycompuesta")]
+    partial class keycompuesta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

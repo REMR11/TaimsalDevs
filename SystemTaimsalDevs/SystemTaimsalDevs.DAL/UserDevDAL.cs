@@ -154,52 +154,20 @@ namespace SystemTaimsalDevs.DAL
         }
         public static async Task<UserDev> LoginAsync(UserDev pUserDev)
         {
-            var userDev = new UserDev();
+            UserDev userDev = null;
 
             using (var dbContext = new SystemTaimsalDevsContext())
             {
-                EncryptSHA256(pUserDev);
-                userDev = await dbContext.UserDevs.SingleOrDefaultAsync(s => s.Login == pUserDev.Login &&
-              s.Password == pUserDev.Password && s.StatusUser == (byte)Status_Users.ACTIVO);
+                // Encriptar la contraseña antes de buscarla en la base de datos
+                EncryotMD5(pUserDev);
+
+                // Filtrar por el usuario y la contraseña proporcionados
+                userDev = await dbContext.UserDevs.SingleOrDefaultAsync(u => u.Login == pUserDev.Login && u.Password == pUserDev.Password);
+              
             }
+
             return userDev;
         }
-
-        //public static async Task<UserDev> LoginAsync(UserDev pUserDev)
-        //{
-        //    UserDev userDev;
-
-        //    using (var dbContext = new SysTaimsalBDContext())
-        //    {
-        //        EncryptSHA256(pUserDev);
-        //        userDev = await dbContext.UserDevs.
-        //            SingleOrDefaultAsync(s => s.Login == pUserDev.Login &&
-        //                                 s.Password == pUserDev.Password &&
-        //                                 s.Status_User == (byte)Status_Users.ACTIVO);
-        //    }
-
-        //    if (userDev == null)
-        //    {
-        //        // manejar la situación donde no se encuentra un usuario
-        //    }
-
-        //    return userDev;
-        //}
-
-
-        //public static async Task<UserDev> LoginAsync(UserDev pUserDev)
-        //{
-        //    EncryotMD5(pUserDev);
-
-        //    using (var dbContext = new SystemTaimsalDevsContext())
-        //    {
-
-        //        return await dbContext.UserDevs
-        //            .SingleOrDefaultAsync(s => s.Login == pUserDev.Login &&
-        //                                       s.Password == pUserDev.Password &&
-        //                                       s.StatusUser == (byte)Status_Users.ACTIVO);
-        //    }
-        //}
 
 
         public static async Task<int> ChangePasswordAsync(UserDev pUsuario, string pPasswordAnt)

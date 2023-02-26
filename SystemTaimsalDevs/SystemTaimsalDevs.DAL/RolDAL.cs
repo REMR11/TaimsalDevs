@@ -7,7 +7,7 @@ using SystemTaimsalDevs.EL;
 using Microsoft.EntityFrameworkCore;
 namespace SystemTaimsalDevs.DAL
 {
-    internal class RolDAL
+    public class RolDAL
     {
 
         public static async Task<int> CrearteAsync(Rol pRol)
