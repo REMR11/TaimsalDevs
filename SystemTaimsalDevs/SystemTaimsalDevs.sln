@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTaimsalDevs.EL", "SystemTaimsalDevs\SystemTaimsalDevs.EL.csproj", "{AF63F3FD-4EB1-48AC-9C17-A27DBADDC30D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemTaimsalDevs.EL", "SystemTaimsalDevs\SystemTaimsalDevs.EL.csproj", "{AF63F3FD-4EB1-48AC-9C17-A27DBADDC30D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTaimsalDevs.DAL", "SystemTaimsalDevs.DAL\SystemTaimsalDevs.DAL.csproj", "{93F0921A-C789-404E-BEAB-E8B546E153E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemTaimsalDevs.DAL", "SystemTaimsalDevs.DAL\SystemTaimsalDevs.DAL.csproj", "{93F0921A-C789-404E-BEAB-E8B546E153E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTaimsalDevs.UnitTets", "SystemTaimsalDevs.UnitTets\SystemTaimsalDevs.UnitTets.csproj", "{AB7F67E0-55BE-4B33-8CE8-DB9180D090BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemTaimsalDevs.UnitTets", "SystemTaimsalDevs.UnitTets\SystemTaimsalDevs.UnitTets.csproj", "{AB7F67E0-55BE-4B33-8CE8-DB9180D090BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTaimsalDevs.BL", "SystemTaimsalDevs.BL\SystemTaimsalDevs.BL.csproj", "{C4BFCC15-8BCA-4480-934E-B74D4ED2A947}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{AB7F67E0-55BE-4B33-8CE8-DB9180D090BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB7F67E0-55BE-4B33-8CE8-DB9180D090BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB7F67E0-55BE-4B33-8CE8-DB9180D090BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4BFCC15-8BCA-4480-934E-B74D4ED2A947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4BFCC15-8BCA-4480-934E-B74D4ED2A947}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4BFCC15-8BCA-4480-934E-B74D4ED2A947}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4BFCC15-8BCA-4480-934E-B74D4ED2A947}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
