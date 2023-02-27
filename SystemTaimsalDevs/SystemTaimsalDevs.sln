@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemTaimsalDevs.UnitTets"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTaimsalDevs.BL", "SystemTaimsalDevs.BL\SystemTaimsalDevs.BL.csproj", "{C4BFCC15-8BCA-4480-934E-B74D4ED2A947}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTaimsalDevs.UI", "SystemTaimsalDevs.UI\SystemTaimsalDevs.UI.csproj", "{6830059E-C0AC-4443-93B0-CD815EC89738}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C4BFCC15-8BCA-4480-934E-B74D4ED2A947}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4BFCC15-8BCA-4480-934E-B74D4ED2A947}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4BFCC15-8BCA-4480-934E-B74D4ED2A947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6830059E-C0AC-4443-93B0-CD815EC89738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6830059E-C0AC-4443-93B0-CD815EC89738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6830059E-C0AC-4443-93B0-CD815EC89738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6830059E-C0AC-4443-93B0-CD815EC89738}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
