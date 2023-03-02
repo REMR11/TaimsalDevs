@@ -1,0 +1,27 @@
+﻿@model SystemTaimsalDevs.EL.Provider
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar</h1>
+
+<h3>¿Estás seguro de eliminar?</h3>
+<div>
+    <h4>Proveedor</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NameProvider)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NameProvider)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdProvider" />
+        <button type="submit" value="Delete" class="btn btn-danger">Eliminar</button> |
+        <a type="button" asp-action="Index" class="btn btn-primary">Volvel a la Lista</a>
+    </form>
+</div>

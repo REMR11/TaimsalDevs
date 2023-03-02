@@ -1,0 +1,24 @@
+﻿@model SystemTaimsalDevs.EL.Provider
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>Proveedor</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NameProvider)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NameProvider)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a type="buttom" class="btn btn-success" asp-action="Edit" asp-route-id="@Model?.IdProvider">Editar</a> |
+    <a type="buttom" class="btn btn-primary" asp-action="Index">Volvel a la Lista</a>
+</div>

@@ -1,0 +1,33 @@
+﻿@model SystemTaimsalDevs.EL.Rol
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar</h1>
+
+<h4>Rol</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdRol" />
+            <div class="form-group mb-3">
+                <label asp-for="NameRol" class="control-label">Nombre de Rol</label>
+                <input asp-for="NameRol" class="form-control" />
+                <span asp-validation-for="NameRol" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <button type="submit" value="Save" class="btn btn-success">Editar</button> |
+                <a type="button" class="btn btn-primary" asp-action="Index">Volver a la Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

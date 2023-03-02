@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SystemTaimsalDevs.EL.Provider>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Proveedor</h1>
+
+<p style="padding-left:86%">
+    <a type="button" class="btn btn-primary" asp-action="Create">Nuevo Proveedor</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameProvider)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameProvider)
+            </td>
+            <td>
+                    <a type="button" class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdProvider">Editar</a>
+                    <a type="button" class="btn btn-info" asp-action="Details" asp-route-id="@item.IdProvider">Detalles</a>
+                    <a type="button" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdProvider">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

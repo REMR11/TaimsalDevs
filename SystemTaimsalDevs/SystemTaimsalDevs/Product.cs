@@ -15,7 +15,7 @@ public partial class Product
     [StringLength(40)]
     public string NameProduct { get; set; } = null!;
 
-    public string ImageProduct { get; set; } = null!;
+    public string? ImageProduct { get; set; }
 
     [StringLength(500)]
     public string? DescriptionProduct { get; set; }

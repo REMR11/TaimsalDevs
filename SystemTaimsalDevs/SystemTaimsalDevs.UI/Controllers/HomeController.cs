@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using SystemTaimsalDevs.UI.Models;
+using SystemTaimsalDevs.BL;
+using SystemTaimsalDevs.DAL;
+using SystemTaimsalDevs.EL;
 
 namespace SystemTaimsalDevs.UI.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SystemTaimsalDevsContext _context = new SystemTaimsalDevsContext();
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -17,8 +22,35 @@ namespace SystemTaimsalDevs.UI.Controllers
         {
             return View();
         }
-
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult OursCompany()
+        {
+            return View();
+        }
+        public IActionResult Machinery()
+        {
+            return View(_context.Machines.ToList());
+        }
+        public IActionResult Briefcase()
+        {
+            return View();
+        }
+        public IActionResult Jobs()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult Shop()
+        {
+            return View(_context.Products.ToList());
+        }
+        public IActionResult Admin()
         {
             return View();
         }

@@ -17,7 +17,7 @@ public partial class Report
     [Key]
     public int IdReport { get; set; }
 
-    public int IdClient { get; set; }
+    public int? IdClient { get; set; }
 
     public int? IdProduct { get; set; }
 
@@ -29,7 +29,7 @@ public partial class Report
 
     [ForeignKey("IdClient")]
     [InverseProperty("Reports")]
-    public virtual Client IdClientNavigation { get; set; } = null!;
+    public virtual Client? IdClientNavigation { get; set; } = null!;
 
     [ForeignKey("IdMachine")]
     [InverseProperty("Reports")]

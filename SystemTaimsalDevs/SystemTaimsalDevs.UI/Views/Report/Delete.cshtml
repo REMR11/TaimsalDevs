@@ -1,0 +1,51 @@
+﻿@model SystemTaimsalDevs.EL.Report
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1>Eliminar</h1>
+
+<h3>¿Estás seguro de eliminar?</h3>
+
+<div>
+    <h4>Reporte</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdClientNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdClientNavigation.NameClient)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdMachineNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdMachineNavigation.NameMachine)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdProductNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdProductNavigation.ImageProduct)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdProviderNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdProviderNavigation.NameProvider)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdUserNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdUserNavigation.LastNameUser)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdReport" />
+        <button type="submit" value="Delete" class="btn btn-danger">Eliminar</button> |
+        <a type="button" asp-action="Index" class="btn btn-primary">Volvel a la Lista</a>
+    </form>
+</div>
