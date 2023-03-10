@@ -22,9 +22,6 @@
                 @Html.DisplayNameFor(model => model.Login)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.StatusUser)
             </th>
             <th>
@@ -49,12 +46,18 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Login)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StatusUser)
-                </td>
+                    @if(item.StatusUser == 1)
+                    {
+                        <td>ACTIVO</td>
+                    }
+                    else if(item.StatusUser == 2)
+                    {
+                    <td>INACTIVO</td>
+                }
+                else
+                {
+                    <td></td>
+                }
                 <td>
                     @Html.DisplayFor(modelItem => item.RegistrationUser)
                 </td>

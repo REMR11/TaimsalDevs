@@ -19,37 +19,55 @@
                 <span asp-validation-for="IdRol" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
-                <label asp-for="NameUser" class="control-label"></label>
+                <label asp-for="NameUser" class="control-label">Nombre</label>
                 <input asp-for="NameUser" class="form-control" />
                 <span asp-validation-for="NameUser" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
-                <label asp-for="LastNameUser" class="control-label"></label>
+                <label asp-for="LastNameUser" class="control-label">Apellido</label>
                 <input asp-for="LastNameUser" class="form-control" />
                 <span asp-validation-for="LastNameUser" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
-                <label asp-for="Login" class="control-label"></label>
+                <label asp-for="Login" class="control-label">E-mail</label>
                 <input asp-for="Login" class="form-control" />
                 <span asp-validation-for="Login" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
-                <label asp-for="Password" class="control-label"></label>
+                <label asp-for="Password" class="control-label">Contraseña</label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
-            </div>          
+            </div>
             <div class="form-group mb-3">
-                <label asp-for="ConfirmPassword_aux" class="control-label"></label>
+                <label asp-for="ConfirmPassword_aux" class="control-label">Confirmar Contraseña</label>
                 <input asp-for="ConfirmPassword_aux" class="form-control" />
                 <span asp-validation-for="ConfirmPassword_aux" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
-                <label asp-for="StatusUser" class="control-label"></label>
-                <input asp-for="StatusUser" class="form-control" />
+                <label asp-for="StatusUser" class="control-label">Estado de Usuario</label>
+                <select asp-for="StatusUser" class="form-control">
+                    <option selected value="">Seleccionar</option>
+                    @if (Model.StatusUser == 1)
+                    {
+                        <option selected value="1">Activo</option>
+                    }
+                    else
+                    {
+                        <option value="1">Activo</option>
+                    }
+                    @if (Model.StatusUser == 2)
+                    {
+                        <option selected value="2">Inactivo</option>
+                    }
+                    else
+                    {
+                        <option value="2">Inactivo</option>
+                    }
+                </select>
                 <span asp-validation-for="StatusUser" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
-                <label asp-for="RegistrationUser" class="control-label"></label>
+                <label asp-for="RegistrationUser" class="control-label">Registro de Usuario</label>
                 <input asp-for="RegistrationUser" class="form-control" />
                 <span asp-validation-for="RegistrationUser" class="text-danger"></span>
             </div>
@@ -62,5 +80,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

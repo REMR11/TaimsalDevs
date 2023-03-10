@@ -54,8 +54,8 @@ namespace SystemTaimsalDevs.DAL
                 bool ExisteLogin = await ExistLogin(pUsuario, bdContexto);
                 if (ExisteLogin == false)
                 {
-                    pUsuario.RegistrationUser = DateTime.Now;
                     EncryotMD5(pUsuario);
+                    pUsuario.RegistrationUser = DateTime.Now;
                     bdContexto.Add(pUsuario);
                     result = await bdContexto.SaveChangesAsync();
                 }
@@ -154,19 +154,14 @@ namespace SystemTaimsalDevs.DAL
         }
         public static async Task<UserDev> LoginAsync(UserDev pUserDev)
         {
-            UserDev userDev = null;
-
-            using (var dbContext = new SystemTaimsalDevsContext())
+            var usuario = new UserDev();
+            using (var bdContexto = new SystemTaimsalDevsContext())
             {
-                // Encriptar la contraseña antes de buscarla en la base de datos
                 EncryotMD5(pUserDev);
-
-                // Filtrar por el usuario y la contraseña proporcionados
-                userDev = await dbContext.UserDevs.SingleOrDefaultAsync(u => u.Login == pUserDev.Login && u.Password == pUserDev.Password);
-              
+                usuario = await bdContexto.UserDevs.FirstOrDefaultAsync(s => s.Login == pUserDev.Login &&
+                s.Password == pUserDev.Password && s.StatusUser == (byte)Status_Users.ACTIVO);
             }
-
-            return userDev;
+            return usuario;
         }
 
 
@@ -174,7 +169,6 @@ namespace SystemTaimsalDevs.DAL
         {
             int result = 0;
             var usuarioPassAnt = new UserDev { Password = pPasswordAnt };
-            EncryotMD5(usuarioPassAnt);
             using (var bdContexto = new SystemTaimsalDevsContext())
             {
                 var usuario = await bdContexto.UserDevs.FirstOrDefaultAsync(s => s.IdUser == pUsuario.IdUser);

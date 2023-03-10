@@ -9,7 +9,7 @@ using SystemTaimsalDevs.EL;
 
 namespace SystemTaimsalDevs.BL
 {
-    internal class UserDevsBL
+    public class UserDevsBL
     {
 
         public async Task<int> CreateAsync(UserDev pUser)
@@ -32,9 +32,9 @@ namespace SystemTaimsalDevs.BL
             return await UserDevDAL.GetAllAsync();
         }
 
-        public async Task<List<UserDev>> SarchAsync(UserDev pUser)
+        public async Task<List<UserDev>> BuscarAsync(UserDev pUser)
         {
-            return await UserDevDAL.SearchIncludeRolesAsync(pUser);
+            return await UserDevDAL.BuscarAsync(pUser);
         }
 
         public async Task<int> DeleteAsync(UserDev pUser)

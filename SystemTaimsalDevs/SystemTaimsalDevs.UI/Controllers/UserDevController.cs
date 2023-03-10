@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SystemTaimsalDevs.BL;
 using SystemTaimsalDevs.DAL;
 using SystemTaimsalDevs.EL;
 
 namespace SystemTaimsalDevs.UI.Controllers
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class UserDevController : Controller
     {
         private readonly SystemTaimsalDevsContext _context = new SystemTaimsalDevsContext();
+        UserDevsBL usuarioBL = new UserDevsBL();
+        RolBL rolBL = new RolBL();
 
         // GET: UserDev
         public async Task<IActionResult> Index()
@@ -115,6 +123,100 @@ namespace SystemTaimsalDevs.UI.Controllers
             }
             ViewData["IdRol"] = new SelectList(_context.Rols, "IdRol", "NameRol", userDev.IdRol);
             return View(userDev);
+        }
+
+        //// GET:
+        //[AllowAnonymous]
+        //public async Task<IActionResult> Login(string ReturnUrl = null)
+        //{
+        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //    ViewBag.Url = ReturnUrl;
+        //    ViewBag.Error = "";
+        //    return View();
+        //}
+
+        //// POST: 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> Login(UserDev pUserDev, string pReturnUrl = null)
+        //{
+        //    try
+        //    {
+        //        var usuario = await usuarioBL.LoginAsync(pUserDev);
+        //        if (usuario != null && usuario.IdUser > 0 && pUserDev.Login == usuario.Login)
+        //        {
+        //            usuario.IdRolNavigation = await rolBL.GetByIdAsync(new Rol { IdRol = usuario.IdUser });
+        //            var claims = new[] { new Claim(ClaimTypes.Name, usuario.Login), new Claim(ClaimTypes.Role, usuario.IdRolNavigation.NameRol) };
+        //            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+        //        }
+        //        else
+        //            throw new Exception("Credenciales incorrectas");
+        //        if (!string.IsNullOrWhiteSpace(pReturnUrl))
+        //            return Redirect(pReturnUrl);
+        //        else
+        //            return RedirectToAction("Index", "Home");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewBag.Url = pReturnUrl;
+        //        ViewBag.Error = ex.Message;
+        //        return View(new UserDev { Login = pUserDev.Login });
+        //    }
+        //}
+
+        // GET: UserDev/Register
+        public IActionResult Register()
+        {
+            ViewData["IdRol"] = new SelectList(_context.Rols, "IdRol", "NameRol");
+            return View();
+        }
+
+        // POST: UserDev/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([Bind("IdUser,IdRol,NameUser,LastNameUser,Login,Password,StatusUser,RegistrationUser,ConfirmPassword_aux")] UserDev userDev)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(userDev);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index","Home");
+            }
+            ViewData["IdRol"] = new SelectList(_context.Rols, "IdRol", "NameRol", userDev.IdRol);
+            return View(userDev);
+        }
+
+        //GET
+        public async Task<IActionResult> ChangePassword()
+        {
+            var usuarios = await usuarioBL.BuscarAsync(new UserDev { Login = User.Identity.Name, Top_Aux = 1 });
+            var usuarioActual = usuarios.FirstOrDefault();
+            ViewBag.Error = "";
+            return View(usuarioActual);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(UserDev pUserDev, string pPasswordAnt)
+        {
+            try
+            {
+                int result = await usuarioBL.ChangePasswordAsync(pUserDev, pPasswordAnt);
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                return RedirectToAction("Login", "UserDev");
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                var usuarios = await usuarioBL.BuscarAsync(new UserDev { Login = User.Identity.Name, Top_Aux = 1 });
+                var usuarioActual = usuarios.FirstOrDefault();
+                return View(usuarioActual);
+            }
         }
 
         // GET: UserDev/Delete/5
