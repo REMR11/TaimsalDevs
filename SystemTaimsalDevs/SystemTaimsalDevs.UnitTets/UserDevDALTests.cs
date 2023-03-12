@@ -13,7 +13,7 @@ namespace SystemTaimsalDevs.DAL.Tests
     [TestClass()]
     public class UserDevDALTests
     {
-        private static UserDev UserDevInicial = new UserDev { IdUser = 2, IdRol = 1, Login = "cesar@gmail.com", Password = "123456" };
+        private static UserDev UserDevInicial = new UserDev { IdUser = 1, IdRol = 1, Login = "cesar@gmail.com", Password = "123456" };
 
         [TestMethod()]
         public async Task  T0EncryotMD5Test()
@@ -118,7 +118,7 @@ namespace SystemTaimsalDevs.DAL.Tests
         {
             var usuario = new UserDev();
             usuario.IdUser = UserDevInicial.IdUser;
-            string passwordnuevo = "123456";
+            string passwordnuevo = "1234567";
             usuario.Password = passwordnuevo;
             var result = await UserDevDAL.ChangePasswordAsync(usuario,UserDevInicial.Password);
             Assert.AreNotEqual(0, result);

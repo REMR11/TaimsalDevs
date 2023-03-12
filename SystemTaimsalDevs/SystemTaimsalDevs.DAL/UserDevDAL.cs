@@ -169,6 +169,7 @@ namespace SystemTaimsalDevs.DAL
         {
             int result = 0;
             var usuarioPassAnt = new UserDev { Password = pPasswordAnt };
+            EncryotMD5(usuarioPassAnt);
             using (var bdContexto = new SystemTaimsalDevsContext())
             {
                 var usuario = await bdContexto.UserDevs.FirstOrDefaultAsync(s => s.IdUser == pUsuario.IdUser);

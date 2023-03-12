@@ -15,7 +15,7 @@ using SystemTaimsalDevs.EL;
 
 namespace SystemTaimsalDevs.UI.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class UserDevController : Controller
     {
         private readonly SystemTaimsalDevsContext _context = new SystemTaimsalDevsContext();
