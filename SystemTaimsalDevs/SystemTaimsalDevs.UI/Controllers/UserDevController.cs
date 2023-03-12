@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+//--------------------------------------------------//
 using SystemTaimsalDevs.BL;
 using SystemTaimsalDevs.DAL;
 using SystemTaimsalDevs.EL;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+
+
 
 namespace SystemTaimsalDevs.UI.Controllers
 {
-    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class UserDevController : Controller
     {
         private readonly SystemTaimsalDevsContext _context = new SystemTaimsalDevsContext();
@@ -125,46 +128,46 @@ namespace SystemTaimsalDevs.UI.Controllers
             return View(userDev);
         }
 
-        //// GET:
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Login(string ReturnUrl = null)
-        //{
-        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    ViewBag.Url = ReturnUrl;
-        //    ViewBag.Error = "";
-        //    return View();
-        //}
+        // GET:
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(string ReturnUrl = null)
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            ViewBag.Url = ReturnUrl;
+            ViewBag.Error = "";
+            return View();
+        }
 
-        //// POST: 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Login(UserDev pUserDev, string pReturnUrl = null)
-        //{
-        //    try
-        //    {
-        //        var usuario = await usuarioBL.LoginAsync(pUserDev);
-        //        if (usuario != null && usuario.IdUser > 0 && pUserDev.Login == usuario.Login)
-        //        {
-        //            usuario.IdRolNavigation = await rolBL.GetByIdAsync(new Rol { IdRol = usuario.IdUser });
-        //            var claims = new[] { new Claim(ClaimTypes.Name, usuario.Login), new Claim(ClaimTypes.Role, usuario.IdRolNavigation.NameRol) };
-        //            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        //            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-        //        }
-        //        else
-        //            throw new Exception("Credenciales incorrectas");
-        //        if (!string.IsNullOrWhiteSpace(pReturnUrl))
-        //            return Redirect(pReturnUrl);
-        //        else
-        //            return RedirectToAction("Index", "Home");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ViewBag.Url = pReturnUrl;
-        //        ViewBag.Error = ex.Message;
-        //        return View(new UserDev { Login = pUserDev.Login });
-        //    }
-        //}
+        // POST: 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(UserDev pUserDev, string pReturnUrl = null)
+        {
+            try
+            {
+                var usuario = await usuarioBL.LoginAsync(pUserDev);
+                if (usuario != null && usuario.IdUser > 0 && pUserDev.Login == usuario.Login)
+                {
+                    usuario.IdRolNavigation = await rolBL.GetByIdAsync(new Rol { IdRol = usuario.IdUser });
+                    var claims = new[] { new Claim(ClaimTypes.Name, usuario.Login)/*, new Claim(ClaimTypes.Role, usuario.IdRolNavigation.NameRol)*/ };
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+                }
+                else
+                    throw new Exception("Credenciales incorrectas");
+                if (!string.IsNullOrWhiteSpace(pReturnUrl))
+                    return Redirect(pReturnUrl);
+                else
+                    return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Url = pReturnUrl;
+                ViewBag.Error = ex.Message;
+                return View(new UserDev { Login = pUserDev.Login });
+            }
+        }
 
         // GET: UserDev/Register
         public IActionResult Register()
@@ -217,6 +220,13 @@ namespace SystemTaimsalDevs.UI.Controllers
                 var usuarioActual = usuarios.FirstOrDefault();
                 return View(usuarioActual);
             }
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> CerrarSesion(string ReturnUrl = null)
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "UserDev");
         }
 
         // GET: UserDev/Delete/5

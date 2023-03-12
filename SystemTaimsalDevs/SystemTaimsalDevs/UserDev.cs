@@ -32,7 +32,7 @@ public partial class UserDev
     public DateTime RegistrationUser { get; set; }
     [ForeignKey("IdRol")]
     [InverseProperty("UserDevs")]
-    public virtual Rol? IdRolNavigation { get; set; } = null!;
+    public virtual Rol? IdRolNavigation { get; set; }
 
     [InverseProperty("IdUserNavigation")]
     public virtual ICollection<Report> Reports { get; } = new List<Report>();

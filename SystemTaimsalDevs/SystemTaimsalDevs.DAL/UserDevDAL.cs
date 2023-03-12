@@ -157,7 +157,7 @@ namespace SystemTaimsalDevs.DAL
             var usuario = new UserDev();
             using (var bdContexto = new SystemTaimsalDevsContext())
             {
-                EncryotMD5(pUserDev);
+                //EncryotMD5(pUserDev);
                 usuario = await bdContexto.UserDevs.FirstOrDefaultAsync(s => s.Login == pUserDev.Login &&
                 s.Password == pUserDev.Password && s.StatusUser == (byte)Status_Users.ACTIVO);
             }
@@ -169,13 +169,13 @@ namespace SystemTaimsalDevs.DAL
         {
             int result = 0;
             var usuarioPassAnt = new UserDev { Password = pPasswordAnt };
-            EncryotMD5(usuarioPassAnt);
+            //EncryotMD5(usuarioPassAnt);
             using (var bdContexto = new SystemTaimsalDevsContext())
             {
                 var usuario = await bdContexto.UserDevs.FirstOrDefaultAsync(s => s.IdUser == pUsuario.IdUser);
                 if (usuarioPassAnt.Password == usuario.Password)
                 {
-                    EncryotMD5(pUsuario);
+                    //EncryotMD5(pUsuario);
                     usuario.Password = pUsuario.Password;
                     bdContexto.Update(usuario);
                     result = await bdContexto.SaveChangesAsync();
