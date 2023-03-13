@@ -141,13 +141,24 @@ namespace SystemTaimsalDevs.DAL
             return Usuarios;
         }
         #endregion
+        //public static async Task<List<UserDev>> SearchIncludeRolesAsync(UserDev pUsuario)
+        //{
+        //    var usuarios = new List<UserDev>();
+        //    using (var bdContexto = new SystemTaimsalDevsContext())
+        //    {
+        //        var select = bdContexto.UserDevs.AsQueryable();
+        //        select = QuerySelect(select, pUsuario).Include(s => s.IdRol).AsQueryable();
+        //        usuarios = await select.ToListAsync();
+        //    }
+        //    return usuarios;
+        //}
         public static async Task<List<UserDev>> SearchIncludeRolesAsync(UserDev pUsuario)
         {
             var usuarios = new List<UserDev>();
             using (var bdContexto = new SystemTaimsalDevsContext())
             {
                 var select = bdContexto.UserDevs.AsQueryable();
-                select = QuerySelect(select, pUsuario).Include(s => s.IdRol).AsQueryable();
+                select = QuerySelect(select, pUsuario).Include(s => s.IdRolNavigation).AsQueryable();
                 usuarios = await select.ToListAsync();
             }
             return usuarios;

@@ -13,7 +13,7 @@ namespace SystemTaimsalDevs.DAL.Tests
     [TestClass()]
     public class UserDevDALTests
     {
-        private static UserDev UserDevInicial = new UserDev { IdUser = 1, IdRol = 1, Login = "cesar@gmail.com", Password = "123456" };
+        private static UserDev UserDevInicial = new UserDev { IdUser = 14, IdRol = 1, Login = "cesar@gmail.com", Password = "33333" };
 
         [TestMethod()]
         public async Task  T0EncryotMD5Test()
@@ -87,27 +87,27 @@ namespace SystemTaimsalDevs.DAL.Tests
             Assert.AreNotEqual(0, resultUserDevs.Count);
         }
 
-        //[TestMethod()]
-        //public async Task T6SearchIncludeRolesAsyncTest()
-        //{
-        //    var userDev = new UserDev();
-        //    userDev.IdRol = userDev.IdRol;
-        //    userDev.NameUser = "U";
-        //    userDev.LastNameUser = "u";
-        //    userDev.Login = "A";
-        //    userDev.StatusUser = (byte)Status_Users.ACTIVO;
-        //    userDev.Top_Aux = 10;
-        //    var result = await UserDevDAL.SearchIncludeRolesAsync(userDev);
-        //    Assert.AreNotEqual(0, result.Count);
-        //    var lasUser = result.FirstOrDefault();
-        //    Assert.IsTrue(lasUser.IdRol != null && userDev.IdRol == lasUser.IdRolNavigation.IdRol);
-        //}
+        [TestMethod()]
+        public async Task T6SearchIncludeRolesAsyncTest()
+        {
+            var userDev = new UserDev();
+            userDev.IdRol = UserDevInicial.IdRol;
+            userDev.NameUser = "Cesar";
+            userDev.LastNameUser = "Quintanilla";
+            userDev.Login = "cesar@gmail.com";
+            userDev.StatusUser = (byte)Status_Users.ACTIVO;
+            userDev.Top_Aux = 10;
+            var result = await UserDevDAL.SearchIncludeRolesAsync(userDev);
+            Assert.AreNotEqual(0, result.Count);
+            var lasUser = result.FirstOrDefault();
+            Assert.IsTrue(lasUser.IdRolNavigation != null && userDev.IdRol == lasUser.IdRolNavigation.IdRol);
+        }
 
         [TestMethod()]
         public async Task T7LoginAsyncTest()
         {
             var userDev = new UserDev();
-            userDev.Login = "cesar@gmail.com";
+            userDev.Login = "cesar999@gmail.com";
             userDev.Password = UserDevInicial.Password;
             var result = await UserDevDAL.LoginAsync(userDev);
             Assert.AreEqual(userDev.Login, result.Login);  

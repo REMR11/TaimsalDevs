@@ -52,7 +52,7 @@ namespace SystemTaimsalDevs.BL
         {
             return await UserDevDAL.ChangePasswordAsync(pUser, pPasswordAnt);
         }
-        public async Task<List<UserDev>> BuscarIncluirRolesAsync(UserDev pUser)
+        public async Task<List<UserDev>> SearchIncluirRolesAsync(UserDev pUser)
         {
             return await UserDevDAL.SearchIncludeRolesAsync(pUser);
         }

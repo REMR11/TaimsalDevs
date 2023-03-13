@@ -150,7 +150,7 @@ namespace SystemTaimsalDevs.UI.Controllers
                 if (usuario != null && usuario.IdUser > 0 && pUserDev.Login == usuario.Login)
                 {
                     usuario.IdRolNavigation = await rolBL.GetByIdAsync(new Rol { IdRol = usuario.IdUser });
-                    var claims = new[] { new Claim(ClaimTypes.Name, usuario.Login)/*, new Claim(ClaimTypes.Role, usuario.IdRolNavigation.NameRol)*/ };
+                    var claims = new[] { new Claim(ClaimTypes.Name, usuario.Login), new Claim(ClaimTypes.Role, usuario.IdRolNavigation.NameRol) };
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
                 }
@@ -168,7 +168,6 @@ namespace SystemTaimsalDevs.UI.Controllers
                 return View(new UserDev { Login = pUserDev.Login });
             }
         }
-
         // GET: UserDev/Register
         public IActionResult Register()
         {
