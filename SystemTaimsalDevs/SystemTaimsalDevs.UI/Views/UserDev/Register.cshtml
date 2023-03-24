@@ -17,13 +17,13 @@
     <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
             <div class="user_card">
-                <div class="d-flex justify-content-center">
+@*                <div class="d-flex justify-content-center">
                     <div class="brand_logo_container">
                         <a asp-controller="Home" asp-action="Index">
                         <img src="~/Img/LogosTaimsal/LogoLogin.png" class="brand_logo" alt="Logo">
                         </a>
                     </div>
-                </div>
+                </div>*@
                 <div class="d-flex justify-content-center form_container">
                     <form asp-action="Register">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -58,14 +58,14 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input asp-for="Password" class="form-control input_user" placeholder="Contraseña" />
+                            <input type="password" asp-for="Password" class="form-control input_user" placeholder="Contraseña" />
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                         <div class="input-group mb-2">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input asp-for="ConfirmPassword_aux" class="form-control input_user" placeholder="Confirmar Contraseña" />
+                            <input type="password" asp-for="ConfirmPassword_aux" class="form-control input_user" placeholder="Confirmar Contraseña" />
                             <span asp-validation-for="ConfirmPassword_aux" class="text-danger"></span>
                         </div>
                         <div class="input-group mb-2">
@@ -79,7 +79,7 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <select asp-for="StatusUser" class="form-control" disabled>
+                            <select asp-for="StatusUser" class="form-control">
                                 <option value="">Seleccionar</option>
                                 <option selected value="1">ACTIVO</option>
                                 <option value="2">INACTIVO</option>
@@ -95,7 +95,7 @@
 
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
-                        Ya tienes una cuenta? <a asp-controller="Login" asp-action="Login" class="ml-2 text-white">Inciar Sesion</a>
+                        Ya tienes una cuenta? <a asp-controller="UserDev" asp-action="Login" class="ml-2 text-white">Inciar Sesion</a>
                     </div>
                 </div>
             </div>

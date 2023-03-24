@@ -20,6 +20,8 @@ public partial class Product
     [StringLength(500)]
     public string? DescriptionProduct { get; set; }
 
+    public int? Stock { get; set; }
+
     [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
 

@@ -12,7 +12,7 @@ namespace SystemTaimsalDevs.DAL.Tests
     [TestClass()]
     public class ProductDALTests
     {
-        private static Product ProductInitial = new Product { IdProduct = 1, NameProduct = "Product One", ImageProduct = "...", DescriptionProduct = "Product One Lorem", Price = 10.00M };
+        private static Product ProductInitial = new Product { IdProduct = 2, NameProduct = "Product One", ImageProduct = "...", DescriptionProduct = "Product One Lorem", Price = 10.00M };
         [TestMethod()]
         public async Task T1CreateAsyncTest()
         {

@@ -18,7 +18,6 @@ using System.Security.Claims;
 
 namespace SystemTaimsalDevs.UI.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class UserDevController : Controller
     {
         private readonly SystemTaimsalDevsContext _context = new SystemTaimsalDevsContext();
@@ -150,7 +149,7 @@ namespace SystemTaimsalDevs.UI.Controllers
                 if (usuario != null && usuario.IdUser > 0 && pUserDev.Login == usuario.Login)
                 {
                     usuario.IdRolNavigation = await rolBL.GetByIdAsync(new Rol { IdRol = usuario.IdUser });
-                    var claims = new[] { new Claim(ClaimTypes.Name, usuario.Login), new Claim(ClaimTypes.Role, usuario.IdRolNavigation.NameRol) };
+                    var claims = new[] { new Claim(ClaimTypes.Name, usuario.Login)/*, new Claim(ClaimTypes.Role, usuario.IdRolNavigation.NameRol) */};
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
                 }
@@ -168,7 +167,7 @@ namespace SystemTaimsalDevs.UI.Controllers
                 return View(new UserDev { Login = pUserDev.Login });
             }
         }
-        // GET: UserDev/Register
+        //GET: UserDev/Register
         public IActionResult Register()
         {
             ViewData["IdRol"] = new SelectList(_context.Rols, "IdRol", "NameRol");
@@ -186,7 +185,7 @@ namespace SystemTaimsalDevs.UI.Controllers
             {
                 _context.Add(userDev);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Login", "UserDev");
             }
             ViewData["IdRol"] = new SelectList(_context.Rols, "IdRol", "NameRol", userDev.IdRol);
             return View(userDev);
@@ -212,7 +211,7 @@ namespace SystemTaimsalDevs.UI.Controllers
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 return RedirectToAction("Login", "UserDev");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
                 var usuarios = await usuarioBL.BuscarAsync(new UserDev { Login = User.Identity.Name, Top_Aux = 1 });
@@ -225,7 +224,7 @@ namespace SystemTaimsalDevs.UI.Controllers
         public async Task<IActionResult> CerrarSesion(string ReturnUrl = null)
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "UserDev");
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: UserDev/Delete/5
@@ -261,14 +260,14 @@ namespace SystemTaimsalDevs.UI.Controllers
             {
                 _context.UserDevs.Remove(userDev);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UserDevExists(int id)
         {
-          return (_context.UserDevs?.Any(e => e.IdUser == id)).GetValueOrDefault();
+            return (_context.UserDevs?.Any(e => e.IdUser == id)).GetValueOrDefault();
         }
     }
 }

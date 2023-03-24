@@ -9,22 +9,32 @@
 <p style="padding-left:86%">
     <a type="button" class="btn btn-primary" asp-action="Create">Nuevo Producto</a>
 </p>
+
+<form asp-controller="Product" asp-action="Index">
+    <p>
+        Buscar: <input type="text" name="buscar" class="form-text" />
+        <input type="submit" value="Buscar" class="btn btn-sm btn-dark" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NameProduct)
+                Nombre Producto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ImageProduct)
+                Imagen
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DescriptionProduct)
+                Descripción
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Precio
             </th>
-            <th></th>
+            <th>
+                Stock
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -42,6 +52,9 @@
                 </td>
                 <td>
                     $@Html.DisplayFor(modelItem => item.Price)
+                </td>             
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock)
                 </td>
                 <td>
                     <a type="button" class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdProduct">Editar</a>

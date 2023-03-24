@@ -10,13 +10,17 @@ using SysTaimsal.UI.Models;
 using SystemTaimsalDevs.BL;
 using SystemTaimsalDevs.DAL;
 using SystemTaimsalDevs.EL;
+using SystemTaimsalDevs.UI.Data;
 using SystemTaimsalDevs.UI.Models;
+using static GMap.NET.Entity.OpenStreetMapGraphHopperRouteEntity;
+using Path = System.IO.Path;
 
 namespace SystemTaimsalDevs.UI.Controllers
 {
     public class ProductController : Controller
     {
         private readonly SystemTaimsalDevsContext _context = new SystemTaimsalDevsContext();
+        ProductBL ProductBL = new ProductBL();
 
         public static string SaveFile(IFormFile archivo)
         {
@@ -29,11 +33,16 @@ namespace SystemTaimsalDevs.UI.Controllers
         }
 
         // GET: Product
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string buscar)
         {
-              return _context.Products != null ? 
-                          View(await _context.Products.ToListAsync()) :
-                          Problem("Entity set 'SystemTaimsalDevsContext.Products'  is null.");
+
+            var product = from products in _context.Products select products;
+
+            if (!String.IsNullOrEmpty(buscar))
+            {
+                product = product.Where(s => s.NameProduct!.Contains(buscar));
+            }
+            return View(await product.ToListAsync());
         }
 
         // GET: Product/Details/5
@@ -65,7 +74,7 @@ namespace SystemTaimsalDevs.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdProduct,NameProduct,ImageProduct,DescriptionProduct,Price")] Product product, IFormFile formFile)
+        public async Task<IActionResult> Create([Bind("IdProduct,NameProduct,ImageProduct,DescriptionProduct,Price,Stock")] Product product, IFormFile formFile)
         {
             try
             {
@@ -105,7 +114,7 @@ namespace SystemTaimsalDevs.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProduct,NameProduct,ImageProduct,DescriptionProduct,Price")] Product product, IFormFile FileUpload)
+        public async Task<IActionResult> Edit(int id, [Bind("IdProduct,NameProduct,ImageProduct,DescriptionProduct,Price,Stock")] Product product, IFormFile FileUpload)
         {
             if (id != product.IdProduct)
             {
@@ -167,14 +176,14 @@ namespace SystemTaimsalDevs.UI.Controllers
             {
                 _context.Products.Remove(product);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)
         {
-          return (_context.Products?.Any(e => e.IdProduct == id)).GetValueOrDefault();
+            return (_context.Products?.Any(e => e.IdProduct == id)).GetValueOrDefault();
         }
     }
 }

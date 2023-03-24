@@ -14,11 +14,9 @@ public partial class Rol
     public int IdRol { get; set; }
 
     [StringLength(30)]
-    public string NameRol { get; set; } = null!;
-
+    public string? NameRol { get; set; } = null!;
     [InverseProperty("IdRolNavigation")]
     public virtual ICollection<UserDev> UserDevs { get; } = new List<UserDev>();
     [NotMapped]
     public int Top_Aux { get; set; }
-
 }

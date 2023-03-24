@@ -1,4 +1,7 @@
 ﻿@using Microsoft.AspNetCore
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +41,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-dark text-decoration-underline" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                            <a class="nav-link text-dark" asp-area="Identity" asp-controller="Home" asp-action="Admin" title="Admin">@User.Identity?.Name</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark text-decoration-underline" asp-area="" asp-controller="Home" asp-action="OursCompany">Nosotros</a>
@@ -67,14 +70,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark text-decoration-underline" asp-area="" asp-controller="UserDev" asp-action="CerrarSesion">Cerrar Sesion</a>
                         </li>
-                        <li class="nav-item dropdown dropstart">
-                            <a class="nav-link fs-3 text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+@*                        <li class="nav-item dropdown dropstart">
+                            <a class="nav-link text-dark" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-three-dots-vertical"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li><a class="dropdown-item Dropstart" asp-controller="Home" asp-action="Admin">Administrador</a></li>
                             </ul>
-                        </li>
+                        </li>*@
                         @*
                         @if (User.IsInRole("Admin"))
                         {}*@
